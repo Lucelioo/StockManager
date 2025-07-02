@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios - Sistema de Estoque</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <link rel="stylesheet" href="historico.css">
+</head>
+<body>
+
+<!-- Barra lateral de navegação -->
+<nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <span class="logo"><i class="fas fa-boxes"></i> <span id="logoText">StockManager</span></span>
+    </div>
+    <ul class="sidebar-menu">
+        <li>
+            <a href="dashboard.html" class="sidebar-link{DASHBOARD_ACTIVE}">
+                <i class="fas fa-chart-line"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="produtos.html" class="sidebar-link{PRODUTOS_ACTIVE}">
+                <i class="fas fa-box"></i> <span>Produtos</span>
+            </a>
+        </li>
+        <li>
+            <a href="fornecedores.html" class="sidebar-link{FORNECEDORES_ACTIVE}">
+                <i class="fas fa-truck"></i> <span>Fornecedores</span>
+            </a>
+        </li>
+        <li>
+            <a href="movimentacoes.html" class="sidebar-link{MOVIMENTACOES_ACTIVE}">
+                <i class="fas fa-exchange-alt"></i> <span>Movimentações</span>
+            </a>
+        </li>
+        <li>
+            <a href="historico.html" class="sidebar-link{HISTORICO_ACTIVE}">
+                <i class="fas fa-file-alt"></i> <span>Relatórios</span>
+            </a>
+        </li>
+        <li>
+            <a href="configuracoes.html" class="sidebar-link{CONFIGURACOES_ACTIVE}">
+                <i class="fas fa-cog"></i> <span>Configurações</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar fade-in">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="user-profile">
+                <div class="dropdown">
+                    <a href="#" class="text-decoration-none position-relative" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell" style="font-size: 20px; color: var(--light-gray);"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationCount">
+                            3
+                            <span class="visually-hidden">notificações não lidas</span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end notification-dropdown">
+                        <li><h6 class="dropdown-header">Notificações</h6></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-box-open text-danger me-3 mt-1"></i>
+                            <div>
+                                <strong>Estoque Esgotado:</strong> Teclado Mecânico Corsair esgotou!
+                                <div class="text small mt-1">há 5 minutos</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-truck-fast text-warning me-3 mt-1"></i>
+                            <div>
+                                <strong>Fornecedor Inativo:</strong> Periféricos & Acessórios Ltda está inativo.
+                                <div class="text small mt-1">há 1 hora</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-link-slash text-info me-3 mt-1"></i>
+                            <div>
+                                <strong>Alerta de Dados:</strong> Um produto não está relacionado a um fornecedor.
+                                <div class="text small mt-1">há 2 horas</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-center small" href="#">Ver todas as notificações</a></li>
+                    </ul>
+                </div>
+                <div class="user-avatar">JS</div>
+                <div>
+                    <div style="font-weight: 500;">João Silva</div>
+                    <div style="font-size: 12px; opacity: 0.7;">Administrador</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Relatórios Card -->
+        <div class="card fade-in">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Gerador de Relatórios
+                </h2>
+            </div>
+
+            <!-- Formulário do Relatório -->
+            <div class="report-form-grid">
+                <div>
+                    <div class="mb-3">
+                        <label for="dataInicio" class="form-label">Data de Início</label>
+                        <input type="date" class="form-control" id="dataInicio" style="color-scheme: dark;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataFim" class="form-label">Data de Fim</label>
+                        <input type="date" class="form-control" id="dataFim" style="color-scheme: dark;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tituloRelatorio" class="form-label">Título do Relatório</label>
+                        <input type="text" class="form-control placeholder-white" id="tituloRelatorio" placeholder="Ex: Relatório Mensal de Movimentações">
+                    </div>
+                </div>
+                <div>
+                    <div class="mb-3">
+                        <label for="autorRelatorio" class="form-label">Autor do Relatório</label>
+                        <input type="text" class="form-control placeholder-white" id="autorRelatorio" placeholder="Seu nome completo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricaoRelatorio" class="form-label">Descrição/Observações</label>
+                        <textarea class="form-control placeholder-white" id="descricaoRelatorio" rows="4" placeholder="Descreva as principais movimentações do período, observações importantes, etc."></textarea>
+                    </div>
+                </div>
+            </div>
+            <style>
+                .placeholder-white::placeholder {
+                    color: gray !important;
+                    opacity: 1;
+                }
+            </style>
+
+            <div class="d-flex gap-3 mb-4">
+                <button class="btn btn-outline-light" onclick="filtrarMovimentacoes()">
+                    <i class="fas fa-filter"></i> Filtrar Movimentações
+                </button>
+                <button class="btn btn-primary" onclick="gerarRelatorio()">
+                    <i class="fas fa-file-pdf"></i> Gerar Relatório PDF
+                </button>
+            </div>
+
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner-border" role="status"></div>
+                <span>Gerando relatório...</span>
+            </div>
+        </div>
+
+        <!-- Preview das Movimentações -->
+        <div class="card fade-in">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-eye"></i>
+                    Preview das Movimentações
+                </h3>
+                <span id="totalMovimentacoes" class="badge bg-primary">0 movimentações encontradas</span>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Fornecedor/Cliente</th>
+                            <th>Responsável</th>
+                        </tr>
+                    </thead>
+                    <tbody id="movimentacoesTableBody">
+                        <!-- Dados de exemplo serão carregados aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="historico.js"></script>
+</body>
+</html>

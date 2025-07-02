@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema de Estoque</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+<!-- Início da Barra Lateral de Navegação (Sidebar) -->
+<nav class="sidebar" id="sidebar"> 
+    <div class="sidebar-header">
+        <span class="logo"><i class="fas fa-boxes"></i> <span id="logoText">StockManager</span></span>
+    </div>
+    <ul class="sidebar-menu">
+        <li>
+            <a href="dashboard.html" class="sidebar-link{DASHBOARD_ACTIVE}">
+                <i class="fas fa-chart-line"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="produtos.html" class="sidebar-link{PRODUTOS_ACTIVE}">
+                <i class="fas fa-box"></i> <span>Produtos</span>
+            </a>
+        </li>
+        <li>
+            <a href="fornecedores.html" class="sidebar-link{FORNECEDORES_ACTIVE}">
+                <i class="fas fa-truck"></i> <span>Fornecedores</span>
+            </a>
+        </li>
+        <li>
+            <a href="movimentacoes.html" class="sidebar-link{MOVIMENTACOES_ACTIVE}">
+                <i class="fas fa-exchange-alt"></i> <span>Movimentações</span>
+            </a>
+        </li>
+        <li>
+            <a href="historico.html" class="sidebar-link{HISTORICO_ACTIVE}">
+                <i class="fas fa-file-alt"></i> <span>Relatórios</span>
+            </a>
+        </li>
+        <li>
+            <a href="configuracoes.html" class="sidebar-link{CONFIGURACOES_ACTIVE}">
+                <i class="fas fa-cog"></i> <span>Configurações</span>
+            </a>
+        </li>
+    </ul>
+</nav> 
+<!-- Fim da Barra Lateral de Navegação -->
+
+    <!-- Início do Conteúdo Principal -->
+    <main class="main-content" id="mainContent"> 
+        <!-- Início da Barra Superior (Top Bar) -->
+        <div class="top-bar fade-in">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="user-profile">
+                <div class="dropdown">
+                    <a href="#" class="text-decoration-none position-relative" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell" style="font-size: 20px; color: var(--light-gray);"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationCount">
+                            3
+                            <span class="visually-hidden">notificações não lidas</span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end notification-dropdown">
+                        <li><h6 class="dropdown-header">Notificações</h6></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-box-open text-danger me-3 mt-1"></i>
+                            <div>
+                                <strong>Estoque Esgotado:</strong> Teclado Mecânico Corsair esgotou!
+                                <div class="text small mt-1">há 5 minutos</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-truck-fast text-warning me-3 mt-1"></i>
+                            <div>
+                                <strong>Fornecedor Inativo:</strong> Periféricos & Acessórios Ltda está inativo.
+                                <div class="text small mt-1">há 1 hora</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-link-slash text-info me-3 mt-1"></i>
+                            <div>
+                                <strong>Alerta de Dados:</strong> Um produto não está relacionado a um fornecedor.
+                                <div class="text small mt-1">há 2 horas</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-center small" href="#">Ver todas as notificações</a></li>
+                    </ul>
+                </div>
+                <div class="user-avatar">JD</div>
+                <div>
+                    <div style="font-weight: 500;">João Silva</div>
+                    <div style="font-size: 12px; opacity: 0.7;">Administrador</div>
+                </div>
+            </div>
+        </div> 
+        <!-- Fim da Barra Superior -->
+
+        <!-- Início da Grade de Estatísticas -->
+        <div class="stats-grid fade-in">
+            <div class="stat-card" onclick="window.location.href='produtos.html'">
+                <div class="stat-icon">
+                    <i class="fas fa-box"></i>
+                </div>
+                <div class="stat-value">1,247</div>
+                <div class="stat-label">Total de Produtos</div>
+            </div>
+            <div class="stat-card" onclick="window.location.href='movimentacoes.html'">
+                <div class="stat-icon">
+                    <i class="fas fa-arrow-down text-success"></i>
+                </div>
+                <div class="stat-value">89</div>
+                <div class="stat-label">Entradas Hoje</div>
+            </div>
+            <div class="stat-card" onclick="window.location.href='movimentacoes.html'">
+                <div class="stat-icon">
+                    <i class="fas fa-arrow-up text-danger"></i>
+                </div>
+                <div class="stat-value">67</div>
+                <div class="stat-label">Saídas Hoje</div>
+            </div>
+            <div class="stat-card" onclick="window.location.href='produtos.html'">
+                <div class="stat-icon">
+                    <i class="fas fa-exclamation-triangle text-warning"></i>
+                </div>
+                <div class="stat-value">23</div>
+                <div class="stat-label">Estoque Baixo</div>
+            </div>
+        </div> 
+        <!-- Fim da Grade de Estatísticas -->
+
+        <!-- Início da Grade de Conteúdo Principal (Gráfico e Atividades) -->
+        <div class="content-grid">
+            <div class="card fade-in" id="produtos-section">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-box"></i>
+                        Entradas e Saídas de Produtos
+                    </h3>
+                    <div class="chart-filters">
+                        <div class="btn-group" role="group" aria-label="Filtro do Gráfico">
+                            <button type="button" class="btn btn-sm btn-outline-light active" data-filter="ambos">Ambos</button>
+                            <button type="button" class="btn btn-sm btn-outline-light" data-filter="entradas">Entradas</button>
+                            <button type="button" class="btn btn-sm btn-outline-light" data-filter="saidas">Saídas</button>
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 300px;">
+                    <canvas id="estoqueChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Início da Seção de Atividades Recentes -->
+            <div class="card fade-in">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-clock"></i>
+                        Atividades Recentes
+                    </h3>
+                </div>
+                <div class="recent-activity">
+                    <div class="activity-item">
+                        <div class="activity-icon entrada">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Entrada de Produtos</div>
+                            <div class="activity-time">50 unidades - Notebook Dell</div>
+                            <div class="activity-time">há 2 horas</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon saida">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Saída de Produtos</div>
+                            <div class="activity-time">25 unidades - Mouse Logitech</div>
+                            <div class="activity-time">há 4 horas</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon entrada">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Entrada de Produtos</div>
+                            <div class="activity-time">100 unidades - Cabo HDMI</div>
+                            <div class="activity-time">ontem</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon saida">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Saída de Produtos</div>
+                            <div class="activity-time">15 unidades - Teclado Corsair</div>
+                            <div class="activity-time">ontem</div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <!-- Fim da Seção de Atividades Recentes -->
+        </div> 
+        <!-- Fim da Grade de Conteúdo Principal -->
+    </main> 
+    <!-- Fim do Conteúdo Principal -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body> 
+</html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Sistema de Estoque</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="configuracoes.css">
+</head>
+<body>
+<!-- Barra lateral de navegação -->
+<nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <span class="logo"><i class="fas fa-boxes"></i> <span id="logoText">StockManager</span></span>
+    </div>
+    <ul class="sidebar-menu">
+        <li>
+            <a href="dashboard.html" class="sidebar-link{DASHBOARD_ACTIVE}">
+                <i class="fas fa-chart-line"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="produtos.html" class="sidebar-link{PRODUTOS_ACTIVE}">
+                <i class="fas fa-box"></i> <span>Produtos</span>
+            </a>
+        </li>
+        <li>
+            <a href="fornecedores.html" class="sidebar-link{FORNECEDORES_ACTIVE}">
+                <i class="fas fa-truck"></i> <span>Fornecedores</span>
+            </a>
+        </li>
+        <li>
+            <a href="movimentacoes.html" class="sidebar-link{MOVIMENTACOES_ACTIVE}">
+                <i class="fas fa-exchange-alt"></i> <span>Movimentações</span>
+            </a>
+        </li>
+        <li>
+            <a href="historico.html" class="sidebar-link{HISTORICO_ACTIVE}">
+                <i class="fas fa-file-alt"></i> <span>Relatórios</span>
+            </a>
+        </li>
+        <li>
+            <a href="configuracoes.html" class="sidebar-link{CONFIGURACOES_ACTIVE}">
+                <i class="fas fa-cog"></i> <span>Configurações</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="page-title">
+                <i class="fas fa-cog"></i>
+                Configurações
+            </div>
+            <div class="user-profile">
+                <div class="dropdown">
+                    <a href="#" class="text-decoration-none position-relative" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell" style="font-size: 20px; color: var(--light-gray);"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationCount">
+                            3
+                            <span class="visually-hidden">notificações não lidas</span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end notification-dropdown">
+                        <li><h6 class="dropdown-header">Notificações</h6></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-box-open text-danger me-3 mt-1"></i>
+                            <div>
+                                <strong>Estoque Esgotado:</strong> Teclado Mecânico Corsair esgotou!
+                                <div class="text small mt-1">há 5 minutos</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-truck-fast text-warning me-3 mt-1"></i>
+                            <div>
+                                <strong>Fornecedor Inativo:</strong> Periféricos & Acessórios Ltda está inativo.
+                                <div class="text small mt-1">há 1 hora</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-link-slash text-info me-3 mt-1"></i>
+                            <div>
+                                <strong>Alerta de Dados:</strong> Um produto não está relacionado a um fornecedor.
+                                <div class="text small mt-1">há 2 horas</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-center small" href="#">Ver todas as notificações</a></li>
+                    </ul>
+                </div>
+                <div class="user-avatar">JD</div>
+                <div>
+                    <div style="font-weight: 500;">João Silva</div>
+                    <div style="font-size: 12px; opacity: 0.7;">Administrador</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Container -->
+        <div class="settings-container">
+            <!-- Settings Navigation -->
+            <div class="settings-nav">
+                <div class="settings-nav-item active" onclick="showSettingsSection('perfil')">
+                    <i class="fas fa-user"></i>
+                    <span>Perfil</span>
+                </div>
+                <div class="settings-nav-item" onclick="showSettingsSection('seguranca')">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Segurança</span>
+                </div>
+                <div class="settings-nav-item" onclick="showSettingsSection('notificacoes')">
+                    <i class="fas fa-bell"></i>
+                    <span>Notificações</span>
+                </div>
+                <div class="settings-nav-item" onclick="showSettingsSection('sistema')">
+                    <i class="fas fa-desktop"></i>
+                    <span>Sistema</span>
+                </div>
+                <div class="settings-nav-item" onclick="showSettingsSection('backup')">
+                    <i class="fas fa-database"></i>
+                    <span>Backup</span>
+                </div>
+                <div class="settings-nav-item" onclick="showSettingsSection('ajuda')">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Ajuda</span>
+                </div>
+            </div>
+
+            <!-- Settings Content -->
+            <div class="settings-content">
+                <!-- Perfil Section -->
+                <div class="settings-section active" id="perfil-section">
+                    <div class="section-title">
+                        <i class="fas fa-user"></i>
+                        Informações do Perfil
+                    </div>
+                    
+                    <div class="avatar-upload">
+                        <div class="avatar-preview" id="avatarPreview">JD</div>
+                        <div>
+                            <button class="btn btn-outline-light" onclick="document.getElementById('avatarInput').click()">
+                                <i class="fas fa-camera"></i> Alterar Foto
+                            </button>
+                            <input type="file" id="avatarInput" accept="image/*" style="display: none;" onchange="previewAvatar(this)">
+                            <p style="font-size: 12px; opacity: 0.7; margin-top: 5px;">JPG, PNG ou GIF. Máximo 2MB.</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Nome Completo</label>
+                                <input type="text" class="form-control" value="João Silva" id="nomeCompleto">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" value="joao.silva@empresa.com" id="email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Telefone</label>
+                                <input type="tel" class="form-control" value="(11) 99999-9999" id="telefone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Cargo</label>
+                                <select class="form-select" id="cargo">
+                                    <option value="administrador" selected>Administrador</option>
+                                    <option value="gerente">Gerente</option>
+                                    <option value="operador">Operador</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Sobre</label>
+                        <textarea class="form-control" rows="3" placeholder="Conte um pouco sobre você..."></textarea>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-primary" onclick="salvarPerfil()">
+                            <i class="fas fa-save"></i> Salvar Alterações
+                        </button>
+                        <button class="btn btn-outline-light">
+                            <i class="fas fa-undo"></i> Cancelar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Segurança Section -->
+                <div class="settings-section" id="seguranca-section">
+                    <div class="section-title">
+                        <i class="fas fa-shield-alt"></i>
+                        Segurança da Conta
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-key"></i> Alterar Senha</h4>
+                        <div class="form-group">
+                            <label class="form-label">Senha Atual</label>
+                            <input type="password" class="form-control" id="senhaAtual">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nova Senha</label>
+                            <input type="password" class="form-control" id="novaSenha">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Confirmar Nova Senha</label>
+                            <input type="password" class="form-control" id="confirmarSenha">
+                        </div>
+                        <button class="btn btn-primary" onclick="alterarSenha()">
+                            <i class="fas fa-save"></i> Alterar Senha
+                        </button>
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-mobile-alt"></i> Autenticação em Duas Etapas</h4>
+                        <p>Adicione uma camada extra de segurança à sua conta.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span>Autenticação em Duas Etapas</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="twoFactorAuth">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-history"></i> Sessões Ativas</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <strong>Chrome - Windows 10</strong><br>
+                                <small class="text">Último acesso: agora</small>
+                            </div>
+                            <span class="badge bg-success">Atual</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <strong>Firefox - Ubuntu</strong><br>
+                                <small class="text">Último acesso: há 2 dias</small>
+                            </div>
+                            <button class="btn btn-sm btn-outline-light">Finalizar</button>
+                        </div>
+                        <button class="btn btn-danger">
+                            <i class="fas fa-sign-out-alt"></i> Finalizar Todas as Sessões
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notificações Section -->
+                <div class="settings-section" id="notificacoes-section">
+                    <div class="section-title">
+                        <i class="fas fa-bell"></i>
+                        Configurações de Notificações
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-envelope"></i> Notificações por Email</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Estoque baixo</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Novos produtos</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Relatórios semanais</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-desktop"></i> Notificações no Sistema</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Sons de notificação</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Notificações desktop</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sistema Section -->
+                <div class="settings-section" id="sistema-section">
+                    <div class="section-title">
+                        <i class="fas fa-desktop"></i>
+                        Configurações do Sistema
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-language"></i> Idioma e Região</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Idioma</label>
+                                    <select class="form-select">
+                                        <option value="pt-BR" selected>Português (Brasil)</option>
+                                        <option value="en-US">English (US)</option>
+                                        <option value="es-ES">Español</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">Fuso Horário</label>
+                                    <select class="form-select">
+                                        <option value="America/Sao_Paulo" selected>América/São Paulo (GMT-3)</option>
+                                        <option value="America/New_York">América/Nova York (GMT-5)</option>
+                                        <option value="Europe/London">Europa/Londres (GMT+0)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-palette"></i> Tema e Aparência</h4>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Tema escuro</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Animações</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-cogs"></i> Configurações Avançadas</h4>
+                        <div class="form-group">
+                            <label class="form-label">Itens por página</label>
+                            <select class="form-select">
+                                <option value="10">10 itens</option>
+                                <option value="25" selected>25 itens</option>
+                                <option value="50">50 itens</option>
+                                <option value="100">100 itens</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Auto-salvar rascunhos</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backup Section -->
+                <div class="settings-section" id="backup-section">
+                    <div class="section-title">
+                        <i class="fas fa-database"></i>
+                        Backup e Restauração
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-download"></i> Backup de Dados</h4>
+                        <p>Faça backup dos seus dados para garantir a segurança das informações.</p>
+                            <div class="d-flex gap-3">
+                            <button class="btn btn-primary" onclick="fazerBackup()">
+                                <i class="fas fa-download"></i> Fazer Backup Agora
+                            </button>
+                            <button class="btn btn-outline-light" onclick="agendarBackup()">
+                                <i class="fas fa-clock"></i> Agendar Backup
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-upload"></i> Restaurar Dados</h4>
+                        <p>Restaure seus dados a partir de um arquivo de backup.</p>
+                        <div class="form-group">
+                            <label class="form-label">Selecionar arquivo de backup</label>
+                            <input type="file" class="form-control" accept=".sql,.json" id="backupFile">
+                        </div>
+                        <button class="btn btn-danger" onclick="restaurarBackup()">
+                            <i class="fas fa-upload"></i> Restaurar Backup
+                        </button>
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-history"></i> Histórico de Backups</h4>
+                        <div class="table-responsive">
+                            <table class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Tamanho</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>28/06/2025 10:30</td>
+                                        <td>2.5 MB</td>
+                                        <td><span class="badge bg-success">Sucesso</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-light">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>27/06/2025 10:30</td>
+                                        <td>2.3 MB</td>
+                                        <td><span class="badge bg-success">Sucesso</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-light">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ajuda Section -->
+                <div class="settings-section" id="ajuda-section">
+                    <div class="section-title">
+                        <i class="fas fa-question-circle"></i>
+                        Centro de Ajuda
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-life-ring"></i> Suporte Técnico</h4>
+                        <p>Precisa de ajuda? Entre em contato com nossa equipe de suporte.</p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#suporteModal">
+                            <i class="fas fa-envelope"></i> Contatar Suporte
+                        </button>
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-book"></i> Documentação</h4>
+                        <p>Consulte nossa documentação completa para aprender a usar o sistema.</p>
+                        <div class="d-flex gap-3">
+                            <button class="btn btn-outline-light">
+                                <i class="fas fa-book-open"></i> Manual do Usuário
+                            </button>
+                            <button class="btn btn-outline-light">
+                                <i class="fas fa-video"></i> Tutoriais em Vídeo
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h4><i class="fas fa-info-circle"></i> Informações do Sistema</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Versão:</strong> 2.1.0</p>
+                                <p><strong>Última Atualização:</strong> 25/06/2025</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Licença:</strong> Comercial</p>
+                                <p><strong>Suporte até:</strong> 25/06/2026</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Suporte -->
+    <div class="modal fade" id="suporteModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-life-ring"></i> Contatar Suporte
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="suporteForm">
+                        <div class="form-group mb-3">
+                            <label class="form-label">Seu Email</label>
+                            <input type="email" class="form-control" id="emailSuporte" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Categoria</label>
+                            <select class="form-select" id="categoriaSuporte" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option value="tecnico">Problema Técnico</option>
+                                <option value="funcionalidade">Nova Funcionalidade</option>
+                                <option value="bug">Reportar Bug</option>
+                                <option value="duvida">Dúvida Geral</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Assunto</label>
+                            <input type="text" class="form-control" id="assuntoSuporte" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Descrição</label>
+                            <textarea class="form-control" rows="5" id="descricaoSuporte" 
+                                placeholder="Descreva detalhadamente sua dúvida ou problema..." required></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Anexos (opcional)</label>
+                            <input type="file" class="form-control" multiple accept="image/*,.pdf,.doc,.docx">
+                            <small class="text">Formatos aceitos: imagens, PDF, DOC, DOCX. Máximo 5MB por arquivo.</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="enviarSuporte()">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Agendamento de Backup -->
+    <div class="modal fade" id="backupModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-clock"></i> Agendar Backup Automático
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <label class="form-label">Frequência</label>
+                        <select class="form-select" id="frequenciaBackup">
+                            <option value="diario">Diário</option>
+                            <option value="semanal" selected>Semanal</option>
+                            <option value="mensal">Mensal</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Horário</label>
+                        <input type="time" class="form-control" value="02:00" id="horarioBackup">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Email para notificação</label>
+                        <input type="email" class="form-control" value="joao.silva@empresa.com" id="emailBackup">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="salvarAgendamentoBackup()">
+                        <i class="fas fa-save"></i> Salvar Agendamento
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="configuracoes.js"></script>
+</body>
+</html>

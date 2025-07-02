@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Sistema de Estoque</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="produtos.css">
+</head>
+<body>
+<!-- INÍCIO DA BARRA LATERAL DE NAVEGAÇÃO (SIDEBAR) -->
+<nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <span class="logo"><i class="fas fa-boxes"></i> <span id="logoText">StockManager</span></span>
+        <button class="sidebar-toggle" id="sidebarToggle" title="Expandir/Reduzir"></button>
+    </div>
+    <ul class="sidebar-menu">
+        <li>
+            <a href="dashboard.html" class="sidebar-link{DASHBOARD_ACTIVE}">
+                <i class="fas fa-chart-line"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="produtos.html" class="sidebar-link{PRODUTOS_ACTIVE}">
+                <i class="fas fa-box"></i> <span>Produtos</span>
+            </a>
+        </li>
+        <li>
+            <a href="fornecedores.html" class="sidebar-link{FORNECEDORES_ACTIVE}">
+                <i class="fas fa-truck"></i> <span>Fornecedores</span>
+            </a>
+        </li>
+        <li>
+            <a href="movimentacoes.html" class="sidebar-link{MOVIMENTACOES_ACTIVE}">
+                <i class="fas fa-exchange-alt"></i> <span>Movimentações</span>
+            </a>
+        </li>
+        <li>
+            <a href="historico.html" class="sidebar-link{HISTORICO_ACTIVE}">
+                <i class="fas fa-file-alt"></i> <span>Relatórios</span>
+            </a>
+        </li>
+        <li>
+            <a href="configuracoes.html" class="sidebar-link{CONFIGURACOES_ACTIVE}">
+                <i class="fas fa-cog"></i> <span>Configurações</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<!-- FIM DA BARRA LATERAL DE NAVEGAÇÃO -->
+
+    <!-- INÍCIO DO CONTEÚDO PRINCIPAL -->
+    <main class="main-content" id="mainContent">
+        <!-- Início da Barra Superior (Top Bar) com busca e perfil do usuário -->
+        <div class="top-bar fade-in">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="user-profile">
+                <div class="dropdown">
+                    <a href="#" class="text-decoration-none position-relative" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell" style="font-size: 20px; color: var(--light-gray);"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationCount">
+                            3
+                            <span class="visually-hidden">notificações não lidas</span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end notification-dropdown">
+                        <li><h6 class="dropdown-header">Notificações</h6></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-box-open text-danger me-3 mt-1"></i>
+                            <div>
+                                <strong>Estoque Esgotado:</strong> Teclado Mecânico Corsair esgotou!
+                                <div class="text small mt-1">há 5 minutos</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-truck-fast text-warning me-3 mt-1"></i>
+                            <div>
+                                <strong>Fornecedor Inativo:</strong> Periféricos & Acessórios Ltda está inativo.
+                                <div class="text small mt-1">há 1 hora</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-link-slash text-info me-3 mt-1"></i>
+                            <div>
+                                <strong>Alerta de Dados:</strong> Um produto não está relacionado a um fornecedor.
+                                <div class="text small mt-1">há 2 horas</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-center small" href="#">Ver todas as notificações</a></li>
+                    </ul>
+                </div>
+                <div class="user-avatar">JD</div>
+                <div>
+                    <div style="font-weight: 500;">João Silva</div>
+                    <div style="font-size: 12px; opacity: 0.7;">Administrador</div>
+                </div>
+            </div>
+        </div>
+        <!-- Fim da Barra Superior -->
+
+        <!-- Início do Cabeçalho da Página -->
+        <div class="page-header fade-in">
+            <h1 class="page-title">
+                <i class="fas fa-box"></i>
+                Gerenciamento de Produtos
+            </h1>
+            <p class="page-subtitle">Controle completo do seu inventário de produtos</p>
+        </div>
+        <!-- Fim do Cabeçalho da Página -->
+
+        <!-- Início das Estatísticas Rápidas (Mini Cards) -->
+        <div class="stats-mini fade-in">
+            <div class="stat-mini-card">
+                <div class="stat-mini-value">1,247</div>
+                <div class="stat-mini-label">Total de Produtos</div>
+            </div>
+            <div class="stat-mini-card">
+                <div class="stat-mini-value">23</div>
+                <div class="stat-mini-label">Estoque Baixo</div>
+            </div>
+            <div class="stat-mini-card">
+                <div class="stat-mini-value">87</div>
+                <div class="stat-mini-label">Categorias</div>
+            </div>
+            <div class="stat-mini-card">
+                <div class="stat-mini-value">R$ 2.1M</div>
+                <div class="stat-mini-label">Valor Total</div>
+            </div>
+        </div>
+        <!-- Fim das Estatísticas Rápidas -->
+
+        <!-- Início do Card Principal da Tabela de Produtos -->
+        <div class="card fade-in">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-list"></i>
+                    Lista de Produtos
+                </h3>
+                <button class="btn btn-primary" onclick="openAddModal()">
+                    <i class="fas fa-plus"></i> Novo Produto
+                </button>
+            </div>
+
+            <!-- Barra de Pesquisa e Filtros da Tabela -->
+            <div class="search-filter-bar">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar produtos..." onkeyup="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <select class="filter-select" id="categoryFilter" onchange="filterProducts()">
+                    <option value="">Todas as Categorias</option>
+                    <option value="Eletrônicos">Eletrônicos</option>
+                    <option value="Periféricos">Periféricos</option>
+                    <option value="Acessórios">Acessórios</option>
+                    <option value="Componentes">Componentes</option>
+                </select>
+                <select class="filter-select" id="statusFilter" onchange="filterProducts()">
+                    <option value="">Todos os Status</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Baixo">Baixo</option>
+                    <option value="Esgotado">Esgotado</option>
+                </select>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Produto</th>
+                            <th>Categoria</th>
+                            <th>Preço</th>
+                            <th>Estoque</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTable">
+                        <!-- O corpo da tabela será preenchido dinamicamente via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Fim do Card Principal -->
+    </main>
+    <!-- FIM DO CONTEÚDO PRINCIPAL -->
+
+    <!-- INÍCIO DO MODAL DE ADICIONAR/EDITAR PRODUTO -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Novo Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="productForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="productName" class="form-label">Nome do Produto</label>
+                                    <input type="text" class="form-control" id="productName" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="productCode" class="form-label">Código</label>
+                                    <input type="text" class="form-control" id="productCode" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="productCategory" class="form-label">Categoria</label>
+                                    <select class="form-control" id="productCategory" required>
+                                        <option value="">Selecione uma categoria</option>
+                                        <option value="Eletrônicos">Eletrônicos</option>
+                                        <option value="Periféricos">Periféricos</option>
+                                        <option value="Acessórios">Acessórios</option>
+                                        <option value="Componentes">Componentes</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="productPrice" class="form-label">Preço (R$)</label>
+                                    <input type="number" step="0.01" class="form-control" id="productPrice" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="productStock" class="form-label">Estoque Atual</label>
+                                    <input type="number" class="form-control" id="productStock" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="productMinStock" class="form-label">Estoque Mínimo</label>
+                                    <input type="number" class="form-control" id="productMinStock" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDescription" class="form-label">Descrição</label>
+                            <textarea class="form-control" id="productDescription" rows="3"></textarea>
+                        </div>
+                        <input type="hidden" id="productId">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveProduct()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIM DO MODAL DE ADICIONAR/EDITAR PRODUTO -->
+
+    <!-- INÍCIO DO MODAL DE VISUALIZAÇÃO DE PRODUTO -->
+    <div class="modal fade" id="viewProductModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalhes do Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Código:</strong> <span id="viewCode"></span></p>
+                            <p><strong>Nome:</strong> <span id="viewName"></span></p>
+                            <p><strong>Categoria:</strong> <span id="viewCategory"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Preço:</strong> <span id="viewPrice"></span></p>
+                            <p><strong>Estoque:</strong> <span id="viewStock"></span></p>
+                            <p><strong>Estoque Mínimo:</strong> <span id="viewMinStock"></span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p><strong>Status:</strong> <span id="viewStatus"></span></p>
+                            <p><strong>Descrição:</strong> <span id="viewDescription"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIM DO MODAL DE VISUALIZAÇÃO DE PRODUTO -->
+
+    <!-- INÍCIO DO MODAL DE CONFIRMAÇÃO DE EXCLUSÃO -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar Exclusão</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja excluir o produto <strong id="deleteProductName"></strong>?</p>
+                    <p class="text-danger">Esta ação não pode ser desfeita.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmDelete()">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIM DO MODAL DE CONFIRMAÇÃO DE EXCLUSÃO -->
+
+    <!-- Início da Seção de Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="produtos.js"></script>
+    <!-- Fim da Seção de Scripts -->
+</body>
+</html>

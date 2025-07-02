@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimentações - Sistema de Estoque</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="movimentacoes.css">
+</head>
+<body>
+<!-- Barra lateral de navegação -->
+<nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <span class="logo"><i class="fas fa-boxes"></i> <span id="logoText">StockManager</span></span>
+    </div>
+    <ul class="sidebar-menu">
+        <li>
+            <a href="dashboard.html" class="sidebar-link{DASHBOARD_ACTIVE}">
+                <i class="fas fa-chart-line"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="produtos.html" class="sidebar-link{PRODUTOS_ACTIVE}">
+                <i class="fas fa-box"></i> <span>Produtos</span>
+            </a>
+        </li>
+        <li>
+            <a href="fornecedores.html" class="sidebar-link{FORNECEDORES_ACTIVE}">
+                <i class="fas fa-truck"></i> <span>Fornecedores</span>
+            </a>
+        </li>
+        <li>
+            <a href="movimentacoes.html" class="sidebar-link{MOVIMENTACOES_ACTIVE}">
+                <i class="fas fa-exchange-alt"></i> <span>Movimentações</span>
+            </a>
+        </li>
+        <li>
+            <a href="historico.html" class="sidebar-link{HISTORICO_ACTIVE}">
+                <i class="fas fa-file-alt"></i> <span>Relatórios</span>
+            </a>
+        </li>
+        <li>
+            <a href="configuracoes.html" class="sidebar-link{CONFIGURACOES_ACTIVE}">
+                <i class="fas fa-cog"></i> <span>Configurações</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar fade-in">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar movimentações..." id="searchInput">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="user-profile">
+                <div class="dropdown">
+                    <a href="#" class="text-decoration-none position-relative" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell" style="font-size: 20px; color: var(--light-gray);"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationCount">
+                            3
+                            <span class="visually-hidden">notificações não lidas</span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end notification-dropdown">
+                        <li><h6 class="dropdown-header">Notificações</h6></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-box-open text-danger me-3 mt-1"></i>
+                            <div>
+                                <strong>Estoque Esgotado:</strong> Teclado Mecânico Corsair esgotou!
+                                <div class="text small mt-1">há 5 minutos</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-truck-fast text-warning me-3 mt-1"></i>
+                            <div>
+                                <strong>Fornecedor Inativo:</strong> Periféricos & Acessórios Ltda está inativo.
+                                <div class="text small mt-1">há 1 hora</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item d-flex align-items-start" href="#">
+                            <i class="fas fa-link-slash text-info me-3 mt-1"></i>
+                            <div>
+                                <strong>Alerta de Dados:</strong> Um produto não está relacionado a um fornecedor.
+                                <div class="text small mt-1">há 2 horas</div>
+                            </div>
+                        </a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-center small" href="#">Ver todas as notificações</a></li>
+                    </ul>
+                </div>
+                <div class="user-avatar">JS</div>
+                <div>
+                    <div style="font-weight: 500;">João Silva</div>
+                    <div style="font-size: 12px; opacity: 0.7;">Administrador</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row fade-in">
+            <div class="stat-card">
+                <div class="stat-value" id="totalEntradas">0</div>
+                <div class="stat-label">Total de Entradas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalSaidas">0</div>
+                <div class="stat-label">Total de Saídas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="valorTotal">R$ 0,00</div>
+                <div class="stat-label">Valor Total Movimentado</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="movimentacoesHoje">0</div>
+                <div class="stat-label">Movimentações Hoje</div>
+            </div>
+        </div>
+
+        <!-- Movimentações Card -->
+        <div class="card fade-in">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-exchange-alt"></i>
+                    Histórico de Movimentações
+                </h3>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-success" onclick="openModal('entrada')">
+                        <i class="fas fa-arrow-down"></i> Nova Entrada
+                    </button>
+                    <button class="btn btn-warning" onclick="openModal('saida')">
+                        <i class="fas fa-arrow-up"></i> Nova Saída
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Tipo</label>
+                    <select id="filterTipo" onchange="filterMovimentacoes()">
+                        <option value="">Todos</option>
+                        <option value="entrada">Entrada</option>
+                        <option value="saida">Saída</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Data Inicial</label>
+                    <input type="date" id="filterDataInicial" onchange="filterMovimentacoes()">
+                </div>
+                <div class="filter-group">
+                    <label>Data Final</label>
+                    <input type="date" id="filterDataFinal" onchange="filterMovimentacoes()">
+                </div>
+                <div class="filter-group">
+                    <label>Produto</label>
+                    <select id="filterProduto" onchange="filterMovimentacoes()">
+                        <option value="">Todos os produtos</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label></label>
+                    <button class="btn btn-outline-light" onclick="clearFilters()">
+                        <i class="fas fa-times"></i> Limpar Filtros
+                    </button>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-responsive">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data/Hora</th>
+                            <th>Tipo</th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Valor Unitário</th>
+                            <th>Valor Total</th>
+                            <th>Fornecedor/Cliente</th>
+                            <th>Responsável</th>
+                            <th>Observações</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="movimentacoesTable">
+                        <!-- Dados serão inseridos aqui via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para Adicionar/Editar Movimentação -->
+    <div class="modal fade" id="movimentacaoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Nova Movimentação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="movimentacaoForm">
+                        <input type="hidden" id="movimentacaoId">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Tipo de Movimentação</label>
+                                    <select class="form-select" id="tipo" required>
+                                        <option value="">Selecione o tipo</option>
+                                        <option value="entrada">Entrada</option>
+                                        <option value="saida">Saída</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Data e Hora</label>
+                                    <input type="datetime-local" class="form-control" id="dataHora" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Produto</label>
+                                    <select class="form-select" id="produto" required>
+                                        <option value="">Selecione o produto</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Quantidade</label>
+                                    <input type="number" class="form-control" id="quantidade" min="1" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Valor Unitário (R$)</label>
+                                    <input type="number" class="form-control" id="valorUnitario" step="0.01" min="0" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Valor Total (R$)</label>
+                                    <input type="number" class="form-control" id="valorTotal" step="0.01" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Fornecedor/Cliente</label>
+                            <input type="text" class="form-control" id="fornecedorCliente" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Responsável</label>
+                            <input type="text" class="form-control" id="responsavel" value="João Silva" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Observações</label>
+                            <textarea class="form-control" id="observacoes" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveMovimentacao()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="movimentacoes.js"></script>
+</body>
+</html>
