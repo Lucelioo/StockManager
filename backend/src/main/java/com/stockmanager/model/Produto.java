@@ -49,11 +49,11 @@ public class Produto extends BaseEntity {
         this.descricao = descricao;
     }
 
-    public String getcodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setcodigo(String codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
